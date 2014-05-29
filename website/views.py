@@ -57,7 +57,7 @@ def user_home_(request, user_id):
     try:
         user = User.objects.get(id=user_id)
         otheruserinfo = UserInfo.objects.get(account=User.objects.get(id=user_id))
-        event = Event.objects.filter(account=request.user).order_by('-time')
+        event = Event.objects.filter(account=user).order_by('-time')
         template_var['eventlist'] = event
         template_var['userinfo'] = otheruserinfo
     except UserInfo.DoesNotExist or User.DoesNotExist:
