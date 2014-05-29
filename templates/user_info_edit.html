@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}
+    Modify Info|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="row">
+            <div class="page-header"><h3>资料编辑</h3></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="edit-holder">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h5>头像：</h5>
+                        <img class="img-rounded" src="{% static "image/myimage.jpg" %}">
+                            {{ form.upload_image }}
+                        <hr>
+                        <h5>性别：</h5>
+                        {{ form.sex }}
+                        <hr>
+                        <h5>一句话介绍：</h5>
+                            {{ form.short_introduce }}
+                        <hr>
+                        <h5>介绍：</h5>
+                            {{ form.introduce }}
+                        <h5>所在行业：</h5>
+                        {{ form.industry }}
+                        <hr>
+                        <h5>居住地：</h5>
+                        {{ form.city }}
+                        <hr>
+                        <h5>电话</h5>
+                        {{ form.phone_number }}
+                        <hr>
+                        <button class="btn btn-primary" type="submit">修改资料</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}
+
+

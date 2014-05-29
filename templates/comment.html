@@ -1,0 +1,67 @@
+
+
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Index|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/comment.css' %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="answer-atom">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <a href="{% url 'question' answer.question.id %}"><div class="glyphicon glyphicon-backward"></div> back</a>
+                    </div>
+                    <div class="col-md-11">
+                        <span><a href="#">{{ answer.author.first_name }}</a></span>
+                        <p>{{ answer.content }}</p>
+                    </div>
+
+                </div>
+                    <div class="comment-atom">
+                        <p><b>评论:</b></p>
+                        {% for com in comment %}
+                        <div class="comment-item">
+                            <a>{{ com.author.first_name }}</a>
+                            :{{ com.content }}
+                        </div>
+                        {% endfor %}
+                        <div class="comment-input">
+                            <div class="row">
+                                <form method="post" action="">
+                                    {% csrf_token %}
+                                    <div class="col-md-10">
+                                        {{ form.content }}
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-primary">评论</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <p>&copy; Hanhui.Lu 2014  All Copyright Reserved</p>
+    </footer>
+{% endblock %}

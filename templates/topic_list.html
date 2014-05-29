@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Topic List|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/topic_list.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="glyphicon glyphicon-list"></div>&nbsp;&nbsp;话题动态
+        <hr>
+        <div class="topic-timeline">
+            {#        todo error 'NoReverseMatch at /topic/list' should fix/#}
+            {% for top in questionset %}
+                {% if top %}
+                <div class="topioc-atom">
+                    <div class="title-link">
+                        <h4><b><a href="{% url 'topic_detail' top %}">{{ top }}</a></b></h4>
+                    </div>
+                    <hr>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

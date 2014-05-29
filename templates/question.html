@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Question|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/question.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="question-title">
+            <span class="label label-info">{{ topic }}</span>
+            <h4><div class="glyphicon glyphicon-question-sign"></div> {{ title }}</h4>
+            <hr>
+        </div>
+        <div class="question-detail">
+                {{ content }}
+            <hr>
+        </div>
+        <div class="page-header">
+            <h4>所有回答</h4>
+        </div>
+        <div class="answer-list">
+            {% for ans in answer %}
+                {% include 'answer.html' %}
+            {% endfor %}
+            <div class="self-answer">
+                <h5>你的回答:</h5>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ form.content }}
+                    <button type="submit" class="btn btn-primary">回答问题</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

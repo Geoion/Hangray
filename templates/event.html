@@ -1,0 +1,32 @@
+<div class="index-atom">
+    <div class="row">
+        <div class="col-md-1">
+            {% load staticfiles %}
+            <img class="img-rounded" src="{% static 'image/myimage.jpg' %}">
+                            <span class="like-number">
+                                <h4><span class="label label-default">1k+</span></h4>
+                            </span>
+        </div>
+        <div class="col-md-11">
+            <span><a href="user_home.html">{{ event.account.first_name }}</a></span>
+            {% if event.answer %}
+                <span>回答了该问题&nbsp;&nbsp;&nbsp;{{ event.time }}</span>
+                <h5><a href="{% url 'question' event.answer.question.id %}">{{ event.answer.question.title }}</a></h5>
+                <p>{{ event.answer.content }}</p>
+            {% endif %}
+            {% if event.question %}
+                <span>提出了该问题&nbsp;&nbsp;&nbsp;{{ event.time }}</span>
+                <h5><a href="{% url 'question' event.question.id %}">{{ event.question.title }}</a></h5>
+                <p>{{ event.question.content }}</p>
+            {% endif %}
+            <div class="answer-tool">
+                <span><a href="#"><div class="glyphicon glyphicon-plus"></div>关注该问题 </a> </span>
+                <span><a href="#"><div class="glyphicon glyphicon-comment"></div> 回答问题</a> </span>
+                <span><a href="#"><div class="glyphicon glyphicon-heart"></div> 感谢 </a> </span>
+                <span><a href="#"><div class="glyphicon glyphicon-share"></div> 分享 </a> </span>
+                <span><a href="#">•没有帮助 </a> </span>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>

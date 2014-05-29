@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}base{% endblock %}</title>
+    {% load staticfiles %}
+        <link rel="stylesheet" href="{% static "dist/css/bootstrap.min.css" %}">
+        <link rel="shotcut icon" href="{% static "image/favicon.png" %}">
+    {% block include_css %}{% endblock %}
+</head>
+
+<body>
+    {% block navbar %}{% endblock %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            {% block content %}{% endblock %}
+            {% block right %}
+                <div class="col-md-2">
+                    <ul class="nav affix">
+                        <hr>
+                        <li class=""><a><div class="glyphicon glyphicon-bookmark"></div> 我的收藏</a></li>
+                        <li class=""><a><div class="glyphicon glyphicon-file"></div> 我的草稿</a></li>
+                        <li class=""><a><div class="glyphicon glyphicon-ok"></div> 我关注的问题</a></li>
+                        <hr>
+                        <li class=""><a><div class="glyphicon glyphicon-book"></div> 所有问题</a></li>
+                        <li class=""><a><div class="glyphicon glyphicon-th-large"></div> 话题广场</a></li>
+                        <li class=""><a><div class="glyphicon glyphicon-user"></div> 邀请朋友</a></li>
+                        <hr>
+                    </ul>
+                </div>
+            {% endblock %}
+            <div class="col-md-1">
+
+            </div>
+        </div>
+        {% block footer %}
+            <hr>
+            <footer>
+                <p>&copy; Hanhui.Lu 2014  All Copyright Reserved</p>
+            </footer>
+        {% endblock %}
+    </div>
+    {% load staticfiles %}
+        <script src="{% static "dist/js/jquery-1.11.0.min.js" %}"></script>
+        <script src="{% static "dist/js/bootstrap.min.js" %}"></script>
+    {% block include_js %}{% endblock %}
+</body>
+</html>

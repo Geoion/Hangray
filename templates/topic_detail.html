@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Topic Detail|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/topic_detail.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="page-header">
+            <h3>{{ tp_name }}</h3>
+            <div class="glyphicon glyphicon-list-alt"></div> 话题动态
+        </div>
+        {% for ques in question %}
+        <div class="question-atom">
+            <a href="{% url 'question' ques.id %}"><b>{{ ques.title }}</b></a>
+            <p>21个回答</p>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+

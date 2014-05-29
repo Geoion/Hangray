@@ -1,0 +1,15 @@
+<div class="answer-atom">
+    <div class="row">
+        <div class="col-md-12">
+            <span><a href="#">{{ ans.author.first_name }}</a></span>
+            <p>{{ ans.content }}</p>
+{#            todo add count comment number to display in answer's toolbar#}
+            <span><a href="{% url 'comment' ans.id %}"><div class="glyphicon glyphicon-comment"></div> 添加评论</a> </span>
+            <span><a href="#"><div class="glyphicon glyphicon-heart"></div> 感谢 </a> </span>
+            <span><a href="#"><div class="glyphicon glyphicon-share"></div> 分享 </a> </span>
+            <span><a href="#"><div class="glyphicon glyphicon-bookmark"></div> 收藏 </a> </span>
+            <span><a href="#">•没有帮助 </a> </span>
+        </div>
+    </div>
+    <hr>
+</div>

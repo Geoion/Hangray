@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Ask Question|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/ask_question.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+        <div class="col-md-8">
+            <div class="row">
+                <div class="page-header"><h4>提问</h4></div>
+                <div class="col-md-10">
+                    <form role="form" class="edit-question" action="" method="post">
+                        {% csrf_token %}
+                        <span>问题题目：</span>
+                        {{ form.title }}
+                        <span>问题描述：</span>
+                        {{ form.content }}
+                        <span>话题：</span>
+                        {{ form.topic }}
+                        <button type="submit" class="btn btn-primary btn-lg">发布问题</button>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+{% endblock %}
+
+

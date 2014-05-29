@@ -1,0 +1,21 @@
+body
+{
+    padding-top: 70px;
+}
+
+.user-icon
+{
+    max-height: 30px;
+    max-width: 30px;
+}
+.user-drop .dropdown-toggle
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.setting-form .form-control
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

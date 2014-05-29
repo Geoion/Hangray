@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Register Hangary</title>
+    <!-- Bootstrap core CSS -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "dist/css/bootstrap.min.css" %}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{% static "css/register.css" %}">
+    <link rel="shotcut icon" href="{% static "image/favicon.png" %}">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-static-top login-header" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Hangary问答社区</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'login' %}">主页</a></li>
+            </ul>
+            <form action='{% url 'login' %}' class="navbar-form navbar-right" role="form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="btn btn-success">登录</button>
+                <a class="btn btn-default btn-primary" href={% url 'register' %}>注册</a>
+            </form>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="reg-form">
+                <div class="reg-title">
+                    <h1>注&nbsp;&nbsp;册</h1>
+                    <p>欢迎注册校园问答社区账户</p>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> </span>
+                        {{ form.email }}
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
+                        {{ form.username }}
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
+                        {{ form.password }}
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
+                    <input type="password" class="form-control" placeholder="重复您的密码以防有误">
+                </div>
+            </div>
+            <div class="btn-group" id="btnHolder">
+                <button type="submit" class="btn btn-primary btn-lg" id="regBtn">注册</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+
+<div class="container">
+    <!-- Example row of columns -->
+    <hr>
+    <footer>
+        <p>&copy; Hanhui.Lu 2014  All Copyright Reserved</p>
+    </footer>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static "dist/js/jquery-1.11.0.min.js" %}"></script>
+<script src="{% static "dist/js/bootstrap.min.js" %}"></script>
+</body>
+</html>

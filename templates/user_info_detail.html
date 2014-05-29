@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}
+    Detail Info|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/user_info_detail.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-md-2">
+                    {#todo to show the avatar in src(how to do in static file)#}
+                    <img class="img-rounded" src="image/myimage.jpg">
+                </div>
+                <div class="col-md-10">
+                    <h2>{{ userinfo.account.first_name }}•详细资料</h2>
+                    <a href="{% url 'usereditinfo' %}">编辑我的资料</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <span class="info-item">
+                    <h4>
+                        <div class="glyphicon glyphicon-tower"></div>
+                        个人成就:
+                        <span class="info-content">赞{{ userinfo.like_number }}|回答{{ userinfo.question_number }}|收藏{{ userinfo.mark_number }}</span>
+                    </h4>
+                    <hr>
+                </span>
+                <span class="info-item">
+                    <h4>
+                        <div class="glyphicon glyphicon-user"></div>
+                        性别:
+                        <span class="info-content">{{ userinfo.sex }}</span>
+                    </h4>
+                    <hr>
+                </span>
+
+                <span class="info-item">
+                    <h4>
+                        <div class="glyphicon glyphicon-map-marker"></div>
+                        地点:
+                        <span class="info-content">{{ userinfo.city }}</span>
+                    </h4>
+                    <hr>
+                </span>
+                <span class="info-item">
+                    <h4>
+                        <div class="glyphicon glyphicon-briefcase"></div>
+                        所在行业:
+                        <span class="info-content">{{ userinfo.industry }}</span>
+                    </h4>
+                    <hr>
+                </span>
+                <span class="info-item">
+                    <h4>
+                        <div class="glyphicon glyphicon-phone"></div>
+                        电话：
+                        <span class="info-content">{{ userinfo.phone_number }}</span>
+                    </h4>
+                    <hr>
+                </span>
+                <span class="info-item">
+                    <h4>
+                        <div class="glyphicon glyphicon-book"></div>
+                        个人简介：
+                        <div class="info-content">
+                            <p>{{ userinfo.introduce }}</p>
+                        </div>
+                    </h4>
+                    <hr>
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

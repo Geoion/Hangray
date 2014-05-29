@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+        <link rel="stylesheet" href="{% static "css/login.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar navbar-inverse navbar-static-top login-header" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href={% url 'login' %}>Hangary问答社区</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href={% url 'login' %}>主页</a></li>
+                </ul>
+                {% if user.id %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'index' %}">进入社区</a> </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown user-drop">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {% load staticfiles %}
+                                <img src="{% static "image/myimage.jpg" %}" alt="..." class="img-rounded user-icon user-avaster">
+                                {{ user.first_name }}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'userhome' %}"><h5><div class="glyphicon glyphicon-user"></div> 我的主页</h5></a></li>
+                                <li><a href="user_setting_account.html"><h5><div class="glyphicon glyphicon-cog"></div> 设置</h5></a></li>
+                                <li><a href="#"><h5><div class="glyphicon glyphicon-envelope"></div> 私信</h5></a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout' %}"><h5><div class="glyphicon glyphicon-log-out"></div> 退出</h5></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                <form action="" class="navbar-form navbar-right" role="form" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password }}
+                    </div>
+                    <button type="submit" class="btn btn-success">登录</button>
+                    <a class="btn btn-default btn-primary" href={% url 'register' %}>注册</a>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Error!</strong> {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
+{% block content %}
+{#    {% if messages %}#}
+{#        <ul>#}
+{#            {% for message in messages %}#}
+{#                <li>{{ message }}</li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Welcome！</h1>
+                    <p>欢迎来到Hangary校园问答社区平台，在这里你能找到的不仅仅是答案，还有志同道合的朋友</p>
+                    <p>犹豫什么？加入我们吧！</p>
+                    <p><a class="btn btn-primary btn-lg" role="button" href="{% url 'register' %}">注册</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>关于本站</h2>
+            <ul>
+                <li>本站是一个为校园提供问答平台的社区</li>
+                <li>也是一个大四本科狗的毕业设计</li>
+            </ul>
+            <p><a class="btn btn-default" href="about_site.html" role="button">更多介绍 &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>关于技术</h2>
+            <ul>
+                <li>社区采用了twitter开源的前端框架Bootstrap</li>
+                <li>后台采用python语言编写</li>
+                <li>使用MVC（或者MTV？）架构的后台框架django</li>
+            </ul>
+            <p><a class="btn btn-default" href="about_tech.html" role="button">更多技术细节 &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>关于我</h2>
+            <ul>
+                <li>男、大四狗、码农，未来混在魔都</li>
+                <li>典型工科男，爱好互联网、数码、电影</li>
+                <li>单身</li>
+            </ul>
+            <p><a class="btn btn-default" href="about_me.html" role="button">了解更多，请点击 &raquo;</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right %}
+{% endblock %}
+{% block include_js %}
+{% endblock %}
+

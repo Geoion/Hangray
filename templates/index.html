@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Index|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-8">
+        <div class="glyphicon glyphicon-list"></div> 最新动态
+        <hr>
+        <div class="index-timeline">
+            {% for event in eventlist %}
+                {% include 'event.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

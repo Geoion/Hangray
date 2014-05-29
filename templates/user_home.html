@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% block title %}
+    User Home|Hangray
+{% endblock %}
+
+{% block include_css %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/user_home.css" %}">
+{% endblock %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block content %}
+        <div class="col-md-8">
+            <div class="user-info">
+                <div class="page-header">
+                    <span class="lead"><strong>{{ userinfo.account.first_name }}</strong></span>，
+                    <span class="lead">{{ userinfo.short_introduce }}</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img class="img-rounded" src="image/myimage.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="glyphicon glyphicon-map-marker"></div>
+                                <span >{{ userinfo.city }}</span>
+                                <div class="glyphicon glyphicon-briefcase"></div>
+                                <span >{{ userinfo.industry }}</span>
+                            </div>
+                            <div class="col-md-5">
+                                <span>获得：</span>
+                                <span class="">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                    {{ userinfo.like_number }}
+                                    <span>赞同</span>
+                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                    0
+                                    <span>感谢</span>
+                                </span>
+                            </div>
+                            <div class="col-md-3"><a href="{% url 'userdetail' %}">查看详细资料</a></div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="">个人介绍：</div>
+                                <div>{{ userinfo.introduce }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills navin">
+                            <li><a href="#">提问{{ userinfo.question_number }}</a></li>
+                            <li><a href="#">赞同{{ userinfo.like_number }}</a></li>
+                            <li><a href="#">收藏5</a></li>
+                            <li><a href="#">编辑</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="user-action">
+                <h5><b>最新动态|提问|赞同|收藏</b></h5>
+            </div>
+            <hr>
+            <div class="user-timeline">
+                <div class="user-atom">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>回答了该问题</span>
+                            <h5><a href="#">为什么香港那么发达但感觉不是很堵车？</a></h5>
+                            <p>排名第一第二的答案综合下看就接近真相了。一方面，用高额的用车成本限制了车辆的总数，
+                                使每辆车获得的道路资源足够。另一方面，用严格的执法，提高了违规成本。这世上绝少有天生的坏人，<a href="#">如此此网址</a>
+                                就是喜欢违规，就是喜欢违法，就是喜欢给别人添乱的神经病。在路上的… <a href="#">显示全部</a>
+                            </p>
+                            <span><a href="#"><div class="glyphicon glyphicon-plus"></div>关注该问题 </a> </span>
+                            <span><a href="#"><div class="glyphicon glyphicon-comment"></div> 添加评论</a> </span>
+                            <span><a href="#"><div class="glyphicon glyphicon-heart"></div> 感谢 </a> </span>
+                            <span><a href="#"><div class="glyphicon glyphicon-share"></div> 分享 </a> </span>
+                            <span><a href="#">•没有帮助 </a> </span>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block right %}
+    <div class="col-md-2">
+        <p>关注了：<a href="#">16个用户</a></p>
+        <p>关注者：<a href="#">50个用户</a> </p>
+        <hr>
+        <p>关注了话题：<a href="#">14个话题</a> </p>
+        <hr>
+    </div>
+{% endblock %}
+

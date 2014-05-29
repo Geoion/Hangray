@@ -1,0 +1,70 @@
+body
+{
+    padding-top: 70px;
+}
+
+.user-icon
+{
+    max-height: 30px;
+    max-width: 30px;
+}
+.user-drop .dropdown-toggle
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.index-timeline img
+{
+    max-height: 10px;
+    max-width: 10px;
+}
+
+.index-timeline .like-number
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.more-button
+{
+    width: 100%;
+}
+
+.go-top
+{
+
+    position: fixed;
+    bottom: 50px;
+}
+
+.go-top-icon
+{
+    width: 50px;
+    height: 50px;
+}
+
+.self-answer .form-control
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comment-atom
+{
+    padding: 15px 30px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+}
+
+.comment-input
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+footer
+{
+    position: fixed;
+    bottom: 20px;
+}

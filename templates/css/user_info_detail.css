@@ -1,0 +1,61 @@
+body
+{
+    padding-top: 70px;
+}
+
+.user-icon
+{
+    max-height: 30px;
+    max-width: 30px;
+}
+.user-drop .dropdown-toggle
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.index-timeline img
+{
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.index-timeline .like-number
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.more-button
+{
+    width: 100%;
+}
+
+.go-top
+{
+
+    position: fixed;
+    bottom: 50px;
+}
+
+.go-top-icon
+{
+    width: 50px;
+    height: 50px;
+}
+
+.left-tool a
+{
+    color: #808080;
+}
+
+.left-tool a:hover
+{
+    color: #259;
+}
+
+.info-item
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

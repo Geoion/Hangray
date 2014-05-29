@@ -1,0 +1,40 @@
+<div class="navbar navbar-inverse navbar-fixed-top login-header" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'login' %}">Hangary问答社区</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                {#todo need to let li active in some page#}
+                <li class=""><a href="{% url 'index' %}">主页</a></li>
+                <li><a href="{% url 'ask_question' %}">提问</a></li>
+                <li><a href="">发现</a></li>
+                <li><a href="{% url 'topic_list' %}">话题</a></li>
+                <li><a href="">消息</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown user-drop">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {% load staticfiles %}
+                        <img src="{% static "image/myimage.jpg" %}" alt="..." class="img-rounded user-icon">
+                        {{ user_name }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'userhome' %}"><h5><div class="glyphicon glyphicon-user"></div> 我的主页</h5></a></li>
+                        <li><a href="user_setting_account.html"><h5><div class="glyphicon glyphicon-cog"></div> 设置</h5></a></li>
+                        <li><a href="#"><h5><div class="glyphicon glyphicon-envelope"></div> 私信</h5></a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url 'logout' %}"><h5><div class="glyphicon glyphicon-log-out"></div> 退出</h5></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+</div>

@@ -1,0 +1,43 @@
+body
+{
+    padding-top: 70px;
+}
+
+.user-icon
+{
+    max-height: 30px;
+    max-width: 30px;
+}
+.user-drop .dropdown-toggle
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.setting-form .form-control
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.user-info
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    border: 1px solid #dddddd;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.go-top
+{
+
+    position: fixed;
+    bottom: 50px;
+}
+
+.go-top-icon
+{
+    width: 50px;
+    height: 50px;
+}
