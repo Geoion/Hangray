@@ -57,9 +57,22 @@
                             </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-10">
                                 <div class="">个人介绍：</div>
                                 <div>{{ userinfo.introduce }}</div>
+                            </div>
+                            <div class="col-md-2">
+                                <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% if other %}
+                                    {% if not is_followed %}
+                                        <button  type="submit" class="btn btn-default btn-primary" name="btn" value="follow">关注</button>
+                                    {% endif %}
+                                    {% if is_followed %}
+                                        <button  type="submit" class="btn btn-default btn-warning" name="btn" value="cancel_follow">取消关注</button>
+                                    {% endif %}
+                                {% endif %}
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -72,8 +85,8 @@
                         <ul class="nav nav-pills navin">
                             <li><a href="#">提问{{ userinfo.question_number }}</a></li>
                             <li><a href="#">赞同{{ userinfo.like_number }}</a></li>
-                            <li><a href="#">收藏5</a></li>
-                            <li><a href="#">编辑</a></li>
+                            <li><a href="#">回答{{ answer_number }}</a></li>
+                            <li><a href="#">收藏0</a></li>
                         </ul>
                     </div>
                 </div>
