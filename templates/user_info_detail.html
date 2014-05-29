@@ -18,11 +18,13 @@
             <div class="row">
                 <div class="col-md-2">
                     {#todo to show the avatar in src(how to do in static file)#}
-                    <img class="img-rounded" src="image/myimage.jpg">
+                    <img class="img-rounded" src="{% static userinfo.avatar %}">
                 </div>
                 <div class="col-md-10">
                     <h2>{{ userinfo.account.first_name }}•详细资料</h2>
-                    <a href="{% url 'usereditinfo' %}">编辑我的资料</a>
+                    {% if not other %}
+                        <a href="{% url 'usereditinfo' %}">编辑我的资料</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

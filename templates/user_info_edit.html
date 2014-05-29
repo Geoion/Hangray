@@ -22,7 +22,7 @@
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <h5>头像：</h5>
-                        <img class="img-rounded" src="{% static "image/myimage.jpg" %}">
+                        <img class="img-rounded" src="{% static user.avatar %}">
                             {{ form.upload_image }}
                         <hr>
                         <h5>性别：</h5>

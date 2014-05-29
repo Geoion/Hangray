@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-md-1">
             {% load staticfiles %}
-            <img class="img-rounded" src="{% static 'image/myimage.jpg' %}">
+            <img class="img-rounded" src="{% static 'image/defimage.jpg' %}">
                             <span class="like-number">
                                 <h4><span class="label label-default">1k+</span></h4>
                             </span>
         </div>
         <div class="col-md-11">
-            <span><a href="user_home.html">{{ event.account.first_name }}</a></span>
+            <span><a href="{% url 'user_home_other' event.account.id %}">{{ event.account.first_name }}</a></span>
             {% if event.answer %}
                 <span>回答了该问题&nbsp;&nbsp;&nbsp;{{ event.time }}</span>
                 <h5><a href="{% url 'question' event.answer.question.id %}">{{ event.answer.question.title }}</a></h5>

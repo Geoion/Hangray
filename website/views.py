@@ -20,6 +20,7 @@ def navbar(request):
     template_var = dict()
     if request.user.is_authenticated():
         template_var["user_name"] = _(u"%s") % request.user.first_name
+        template_var["user_avatar"] = UserInfo.objects.get(account=request.user).avatar
     else:
         HttpResponseRedirect(reverse('login'))
     return template_var
@@ -29,7 +30,7 @@ def index(request):
     """首页视图"""
     template_var = dict()
     follow = Follow.objects.filter(follower=request.user).values('follow_by')
-    event = Event.objects.filter(account__in=follow)
+    event = Event.objects.filter(account__in=follow).order_by('-time')
     template_var['eventlist'] = event
     return render_to_response("index.html", template_var,
                               context_instance=RequestContext(request))
@@ -40,8 +41,10 @@ def user_home(request):
     if request.user.is_authenticated():
         try:
             userinfo = UserInfo.objects.get(account=request.user)
+            event = Event.objects.filter(account=request.user).order_by('-time')
             # template_var.update(user_var(user))
             template_var['userinfo'] = userinfo
+            template_var['eventlist']=event
         except UserInfo.DoesNotExist:
             return HttpResponseRedirect(reverse('index'))
             # user = User.objects.get(id=userid)
@@ -51,14 +54,14 @@ def user_home(request):
 
 def user_home_(request, user_id):
     template_var = dict()
-    if request.method == 'POST':
-        try:
-            otheruserinfo = UserInfo.objects.get(account=User.objects.get(id=user_id))
-            # template_var.update(user_var(user))
-            template_var['userinfo'] = otheruserinfo
-        except UserInfo.DoesNotExist or User.DoesNotExist:
-            return HttpResponseRedirect(reverse('login'))
-            # user = User.objects.get(id=userid)
+    try:
+        otheruserinfo = UserInfo.objects.get(account=User.objects.get(id=user_id))
+        # template_var.update(user_var(user))
+        template_var['userinfo'] = otheruserinfo
+    except UserInfo.DoesNotExist or User.DoesNotExist:
+        return HttpResponseRedirect(reverse('login'))
+        # user = User.objects.get(id=userid)
+    template_var['other'] = True
     return render_to_response('user_home.html', template_var,
                               context_instance=RequestContext(request))
 
@@ -71,6 +74,18 @@ def user_detail_info(request):
             template_var['userinfo'] = userinfo
         except UserInfo.DoesNotExist:
             return HttpResponseRedirect(reverse('index'))
+    return render_to_response('user_info_detail.html', template_var,
+                              context_instance=RequestContext(request))
+
+
+def user_detail_other(request, user_id):
+    template_var = dict()
+    try:
+        otheruserinfo = UserInfo.objects.get(account=User.objects.get(id=user_id))
+        template_var['userinfo'] = otheruserinfo
+        template_var['other'] = True
+    except UserInfo.DoesNotExist:
+        return HttpResponseRedirect(reverse('index'))
     return render_to_response('user_info_detail.html', template_var,
                               context_instance=RequestContext(request))
 
@@ -101,6 +116,7 @@ def user_info_edit(request):
             user.save()
             return HttpResponseRedirect(reverse('userdetail'))
     template_var['form'] = form
+    template_var['user'] = user
     return render_to_response('user_info_edit.html', template_var,
                               context_instance=RequestContext(request))
 
@@ -190,7 +206,8 @@ def register(request):
                 like_number=0,
                 question_number=0,
                 mark_number=0,
-                phone_number=123
+                phone_number=0,
+                avatar='image/defimage.jpg'
             )
             userinfo.save()
             user.save()

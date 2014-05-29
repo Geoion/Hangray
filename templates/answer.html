@@ -1,7 +1,7 @@
 <div class="answer-atom">
     <div class="row">
         <div class="col-md-12">
-            <span><a href="#">{{ ans.author.first_name }}</a></span>
+            <span><a href="{% url 'user_home_other' ans.author.id %}">{{ ans.author.first_name }}</a></span>
             <p>{{ ans.content }}</p>
 {#            todo add count comment number to display in answer's toolbar#}
             <span><a href="{% url 'comment' ans.id %}"><div class="glyphicon glyphicon-comment"></div> 添加评论</a> </span>

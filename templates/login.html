@@ -32,8 +32,6 @@ Login|Hangray
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown user-drop">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {% load staticfiles %}
-                                <img src="{% static "image/myimage.jpg" %}" alt="..." class="img-rounded user-icon user-avaster">
                                 {{ user.first_name }}
                                 <b class="caret"></b>
                             </a>

@@ -19,8 +19,9 @@ urlpatterns = patterns('',
     url(r'^articles/(?P<year>\d+)/$', views.articles),
     url(r'^user/home/self$', views.user_home, name='userhome'),
     url(r'^user/home/(?P<user_id>\d+)$', views.user_home_, name='user_home_other'),#todo other people can look home page
+    url(r'^user/detail/(?P<user_id>\d+)$', views.user_detail_other, name='user_detail_other'),#todo other people can look home page
     url(r'^user/editinfo$', views.user_info_edit, name='usereditinfo'),
-    url(r'^user/detail$', views.user_detail_info, name='userdetail'),
+    url(r'^user/detail/self$', views.user_detail_info, name='userdetail'),
     url(r'^question/submit/$', views.ask_question, name='ask_question'),
     url(r'^question/detail/(?P<qid>\d+)/$', views.question, name='question'),
     url(r'^topic/detail/(?P<tp_name>\w+)/$', views.topic_detail, name='topic_detail'),

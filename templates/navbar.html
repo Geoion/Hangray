@@ -22,7 +22,7 @@
                 <li class="dropdown user-drop">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         {% load staticfiles %}
-                        <img src="{% static "image/myimage.jpg" %}" alt="..." class="img-rounded user-icon">
+                        <img src="{% static user_avatar %}" alt="..." class="img-rounded user-icon">
                         {{ user_name }}
                         <b class="caret"></b>
                     </a>
