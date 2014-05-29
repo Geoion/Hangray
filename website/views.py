@@ -54,6 +54,8 @@ def user_home(request):
 
 def user_home_(request, user_id):
     template_var = dict()
+    if request.user == User.objects.get(id=user_id):
+        return HttpResponseRedirect(reverse('userhome'))
     try:
         user = User.objects.get(id=user_id)
         otheruserinfo = UserInfo.objects.get(account=User.objects.get(id=user_id))
