@@ -44,7 +44,7 @@ def user_home(request):
             event = Event.objects.filter(account=request.user).order_by('-time')
             # template_var.update(user_var(user))
             template_var['userinfo'] = userinfo
-            template_var['eventlist']=event
+            template_var['eventlist'] = event
         except UserInfo.DoesNotExist:
             return HttpResponseRedirect(reverse('index'))
             # user = User.objects.get(id=userid)
@@ -55,13 +55,30 @@ def user_home(request):
 def user_home_(request, user_id):
     template_var = dict()
     try:
+        user = User.objects.get(id=user_id)
         otheruserinfo = UserInfo.objects.get(account=User.objects.get(id=user_id))
-        # template_var.update(user_var(user))
+        event = Event.objects.filter(account=request.user).order_by('-time')
+        template_var['eventlist'] = event
         template_var['userinfo'] = otheruserinfo
     except UserInfo.DoesNotExist or User.DoesNotExist:
         return HttpResponseRedirect(reverse('login'))
         # user = User.objects.get(id=userid)
     template_var['other'] = True
+    template_var['is_followed'] = False
+    try:
+        follow = Follow.objects.filter(follower=request.user).get(follow_by=user)
+        template_var['is_followed'] = True
+    except Follow.DoesNotExist:
+        template_var['is_followed'] = False
+    except Follow.MultipleObjectsReturned:
+        template_var['is_followed'] = True
+    if request.method == 'POST':
+        if request.POST['btn'] == 'cancel_follow':
+            Follow.objects.filter(follower=request.user, follow_by=user).delete()
+        else:
+            ff = Follow.objects.create(follower=request.user, follow_by=user)
+            ff.save()
+        return HttpResponseRedirect(reverse(user_home_, args=user_id))
     return render_to_response('user_home.html', template_var,
                               context_instance=RequestContext(request))
 
@@ -121,7 +138,7 @@ def user_info_edit(request):
                               context_instance=RequestContext(request))
 
 
-#todo upload content should have a base format like \n or \t
+# todo upload content should have a base format like \n or \t
 def ask_question(request):
     template_var = dict()
     form = QuestionForm()
@@ -175,6 +192,7 @@ def comment(request, answer):
         comment = Comment.objects.create(author=request.user, content=content, answer=ans)
         comment.save()
     return render_to_response('comment.html', template_var, context_instance=RequestContext(request))
+
 
 def topic_detail(request, tp_name):
     template_var = dict()
